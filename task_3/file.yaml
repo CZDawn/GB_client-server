@@ -1,0 +1,8 @@
+first_key:
+- 1
+- 2
+- 3
+second_key: 100
+third_key:
+  €:
+    unicode_code: 8364
