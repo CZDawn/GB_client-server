@@ -32,17 +32,20 @@ from chardet import detect
 
 
 def get_data(files_list: list) -> list:
-    headers_list = [
-        'Изготовитель системы',
-        'Название системы',
-        'Код продукта',
-        'Тип системы'
+    main_data = [
+        [
+            'Изготовитель системы',
+            'Название системы',
+            'Код продукта',
+            'Тип системы'
+        ],
     ]
     os_product_list = []
     os_name_list = []
     os_code_list = []
     os_type_list = []
 
+    i = 0
     for file_ in files_list:
         with open(file_, 'rb') as file:
             content = file.read()
@@ -58,7 +61,12 @@ def get_data(files_list: list) -> list:
                     os_code_list.append(line.split(':')[1].strip())
                 if re.match(r'Тип системы', line):
                     os_type_list.append(line.split(':')[1].strip())
-    return [headers_list, os_product_list, os_name_list, os_code_list, os_type_list]
+        main_data.append([os_product_list[i], \
+                          os_name_list[i], \
+                          os_code_list[i], \
+                          os_type_list[i]])
+        i += 1
+    return main_data
 
 
 def write_to_csv(data: list):
