@@ -1,7 +1,7 @@
 import json
 from socket import socket
 
-from settings import DEFAULT_MAX_PACKAGE_LENGTH, DEFAULT_ENCODING
+from .veriables import DEFAULT_MAX_PACKAGE_LENGTH, DEFAULT_ENCODING
 
 
 def get_message(sender: str):

@@ -3,75 +3,76 @@ import json
 import socket
 
 # Import project settings
-from settings import DEFAULT_ADDRESS, DEFAULT_PORT, DEFAULT_ENCODING, \
-                     DEFAULT_MAX_PACKAGE_LENGTH, DEFAULT_MAX_CONNECTIONS, \
-                     ACTION, TIME, USER, ACCOUNT_NAME, PRESENCE, RESPONSE, \
-                     ERROR, RESPONDEFAULT_IP_ADDRESSEE
+from common.veriables import DEFAULT_ADDRESS, DEFAULT_PORT, \
+                             DEFAULT_ENCODING, DEFAULT_MAX_PACKAGE_LENGTH, \
+                             DEFAULT_MAX_CONNECTIONS, ACTION, TIME, USER, \
+                             ACCOUNT_NAME, PRESENCE, RESPONSE, ERROR, \
+                             RESPONDEFAULT_IP_ADDRESSEE
 # Import project utils
-from utils import get_message, send_message
+from common.utils import get_message, send_message
 
 
 class Server(socket.socket):
-    def __init__(self, listen_address, listen_port):
+    def __init__(self, listening_address, listening_port):
         super(Server, self).__init__(
             socket.AF_INET,
             socket.SOCK_STREAM
         )
-        self.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.bind((listen_address, listen_port))
-        self.listen(DEFAULT_MAX_CONNECTIONS)
+        self.listening_address = listening_address
+        self.listening_port = listening_port
         print('Server is listening!')
 
-    def __client_message_handler(self, message):
-        if ACTION in message and message[ACTION] == PRESENCE \
-                  and TIME in message and USER in message \
-                  and message[USER][ACCOUNT_NAME] == 'Guest':
-                      return {RESPONSE: 200}
-        return {
-            RESPONSEFAULT_IP_ADDRESSEE: 400,
-            ERROR: 'Bad request'
-        }
-
-    def answer_for_messages(self, sender=None):
+    def messages_handler(self):
+        self.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.bind((self.listening_address, self.listening_port))
+        self.listen(DEFAULT_MAX_CONNECTIONS)
         while True:
-            sender, sender_addr = self.accept()
-        try:
-            client_message = get_message(sender)
-            response = self.__client_message_handler(client_message)
-            send_message(sender, response)
-            sender.close()
-        except (ValueError, json.JSONDecodeError):
-            print('Принято некорректное сообщение от клиента.')
-            sender.close()
+            self.client, self.addr = self.accept()
+            message = get_message(self.client)
+            if ACTION in message and message[ACTION] == PRESENCE \
+                      and TIME in message and USER in message \
+                      and message[USER][ACCOUNT_NAME] == 'Guest':
+                response = {RESPONSE: 200}
+            else:
+                response = {
+                    RESPONDEFAULT_IP_ADDRESSEE: 400,
+                    ERROR: 'Bad request'
+                }
+            send_message(self.client, response)
+            print(f'{response} was sended!')
+            self.client.close()
 
 
 def main():
-    try:
-        if '-p' in sys.argv:
-            listen_port = int(sys.argv[sys.argv.index('-p') + 1])
-        else:
-            listen_port = DEFAULT_PORT
-        if listen_port < 1024 and listen_port > 65535:
-            raise ValueError
-    except IndexError:
-        print('После параметра "-p" необходимо указать номер порта.')
-        sys.exit(1)
-    except ValueError:
-        print('Значение порта должно быть в диапазоне от 1024 до 65535.')
-        sys.exit(1)
-
+    # Проверяем указанный IP адрес
     try:
         if '-a' in sys.argv:
-            listen_address = sys.argv[sys.argv.index('-a') + 1]
+            listening_address = sys.argv[sys.argv.index('-a') + 1]
         else:
-            listen_address = '0.0.0.0'
+            listening_address = '0.0.0.0'
     except IndexError:
-        print('После параметра "-a" необходимо указать адрес, который будет слушать сервер.')
+        print('После параметра "-a" необходимо указать слушаемый IP адрес!')
         sys.exit(1)
 
-    server_obj = Server(listen_address, listen_port)
-    server_obj.answer_for_messages()
+    # Проверряем указанный порт
+    try:
+        if '-p' in sys.argv:
+            listening_port = int(sys.argv[sys.argv.index('-p') + 1])
+        else:
+            listening_port = DEFAULT_PORT
+        if listening_port < 1024 or listening_port > 65535:
+            raise ValueError
+    except IndexError:
+        print('После параметра "-p" необходимо указать номер порта!')
+        sys.exit(1)
+    except ValueError:
+        print('Порт должен быть в диапазоне от 1024 до 65535!')
+        sys.exit(1)
+
+    SERVER_OBJECT = Server(listening_address, listening_port)
+    SERVER_OBJECT.messages_handler()
 
 
 if __name__ == '__main__':
     main()
+
