@@ -4,19 +4,15 @@ import logging
 sys.path.append('../')
 from common.variables import LOGGING_LEVEL
 
-CLIENT_FORMATTER = logging.Formatter('%(asctime)s %(levelname)-8s %(filename)s %(message)s')
+FORMATTER = logging.Formatter('%(asctime)s %(levelname)-8s %(filename)s %(message)s')
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.join(PATH, 'client.log')
 
-STREAM_HANDLER = logging.StreamHandler(sys.stderr)
-STREAM_HANDLER.setFormatter(CLIENT_FORMATTER)
-STREAM_HANDLER.setLevel(logging.ERROR)
 LOG_FILE = logging.FileHandler(PATH, encoding='utf8')
-LOG_FILE.setFormatter(CLIENT_FORMATTER)
+LOG_FILE.setFormatter(FORMATTER)
 
 LOGGER = logging.getLogger('client')
-LOGGER.addHandler(STREAM_HANDLER)
 LOGGER.addHandler(LOG_FILE)
 LOGGER.setLevel(LOGGING_LEVEL)
 
