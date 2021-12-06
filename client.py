@@ -2,6 +2,7 @@ import sys
 import json
 import time
 import socket
+import logging
 
 # Import project settings
 from common.veriables import DEFAULT_ADDRESS, DEFAULT_PORT, \
@@ -11,6 +12,12 @@ from common.veriables import DEFAULT_ADDRESS, DEFAULT_PORT, \
                              RESPONDEFAULT_IP_ADDRESSEE
 # Import project utils
 from common.utils import get_message, send_message
+
+# Import logger config
+from log import client_log_config
+
+
+LOG = logging.getLogger('client_logger')
 
 
 class Client(socket.socket):
@@ -25,9 +32,9 @@ class Client(socket.socket):
     def server_response_handler(self):
         response = get_message(self)
         if RESPONSE in response:
-            print('200: Ok')
+            LOG.debug('SERVER RESPONSE: answer code - 200: Ok')
         else:
-            print(f'400: {json_answer[ERROR]}')
+            LOG.error(f'ERROR: answer code - 400: {json_answer[ERROR]}')
 
     def sending_presence_message(self):
         self.connect((self.server_address, self.server_port))
@@ -39,7 +46,7 @@ class Client(socket.socket):
             }
         }
         send_message(self, message)
-        print('Client send the presence message to server!')
+        LOG.debug('CLIENT MESSAGE: Client send the presence message to server!')
         self.server_response_handler()
         self.close()
 
@@ -55,7 +62,7 @@ def main():
         server_address = DEFAULT_ADDRESS
         server_port = DEFAULT_PORT
     except ValueError:
-        print('Порт должен быть в диапазоне от 1024 до 65535!')
+        LOG.error('ERROR: Указан порт вне диапазона от 1024 до 65535!')
         sys.exit(1)
 
     CLIENT_OBJECT = Client(server_address, server_port)

@@ -1,6 +1,7 @@
 import sys
 import json
 import socket
+import logging
 
 # Import project settings
 from common.veriables import DEFAULT_ADDRESS, DEFAULT_PORT, \
@@ -11,6 +12,12 @@ from common.veriables import DEFAULT_ADDRESS, DEFAULT_PORT, \
 # Import project utils
 from common.utils import get_message, send_message
 
+# Import logger config
+from log import server_log_config
+
+
+LOG = logging.getLogger('server_logger')
+
 
 class Server(socket.socket):
     def __init__(self, listening_address, listening_port):
@@ -20,7 +27,7 @@ class Server(socket.socket):
         )
         self.listening_address = listening_address
         self.listening_port = listening_port
-        print('Server is listening!')
+        LOG.debug('START SERVER: Server is listening!')
 
     def messages_handler(self):
         self.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -29,6 +36,7 @@ class Server(socket.socket):
         while True:
             self.client, self.addr = self.accept()
             message = get_message(self.client)
+            LOG.debug(f'CLIENT MESSAGE: Получено сообщение от клиента {message}')
             if ACTION in message and message[ACTION] == PRESENCE \
                       and TIME in message and USER in message \
                       and message[USER][ACCOUNT_NAME] == 'Guest':
@@ -39,7 +47,7 @@ class Server(socket.socket):
                     ERROR: 'Bad request'
                 }
             send_message(self.client, response)
-            print(f'{response} was sended!')
+            LOG.debug(f'SERVER RESPONSE: {response} was sended!')
             self.client.close()
 
 
@@ -51,7 +59,7 @@ def main():
         else:
             listening_address = '0.0.0.0'
     except IndexError:
-        print('После параметра "-a" необходимо указать слушаемый IP адрес!')
+        LOG.error('ERROR: Не указан слушаемый IP адрес после параметра "-а"!')
         sys.exit(1)
 
     # Проверряем указанный порт
@@ -63,10 +71,10 @@ def main():
         if listening_port < 1024 or listening_port > 65535:
             raise ValueError
     except IndexError:
-        print('После параметра "-p" необходимо указать номер порта!')
+        LOG.error('ERROR: Не указан номер порта после параметра "-р"!')
         sys.exit(1)
     except ValueError:
-        print('Порт должен быть в диапазоне от 1024 до 65535!')
+        LOG.error('ERROR: Указан порт вне диапазона от 1024 до 65535!')
         sys.exit(1)
 
     SERVER_OBJECT = Server(listening_address, listening_port)
