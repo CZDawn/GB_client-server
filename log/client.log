@@ -1,4 +1,0 @@
-2021-12-06 21:02:05,276 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-06 21:02:05,276 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-06 21:04:40,923 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-06 21:04:40,923 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok

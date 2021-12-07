@@ -1,0 +1,70 @@
+2021-12-06 21:02:05,276 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-06 21:02:05,276 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-06 21:04:40,923 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-06 21:04:40,923 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 01:19:37,137 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 01:19:37,137 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 01:22:31,840 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 01:22:31,840 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 01:22:33,051 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 01:22:33,051 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 01:23:02,802 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 01:23:02,803 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 01:23:04,305 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 01:23:04,305 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 01:23:05,114 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 01:23:05,114 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 01:23:05,842 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 01:23:05,842 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:06:05,098 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:06:05,099 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:06:07,327 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:06:07,327 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:06:08,178 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:06:08,178 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:25:59,797 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:25:59,797 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:27:19,407 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:27:19,408 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:28:18,461 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:28:18,461 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:30:02,759 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:30:02,760 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:30:30,237 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:30:30,238 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:31:01,263 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:31:01,264 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:31:19,741 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:31:19,742 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:32:49,230 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:32:49,231 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:33:37,664 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:33:37,665 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:34:46,519 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:34:46,520 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:35:11,763 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:35:11,763 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:36:01,399 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:36:01,399 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:36:10,036 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:36:10,037 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:37:23,332 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:37:23,333 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 13:46:44,230 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 13:46:44,230 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:04:39,078 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:04:39,080 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:05:09,284 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:05:09,285 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:06:35,522 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:06:35,522 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:07:57,580 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:07:57,580 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:11:56,798 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:11:56,798 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:14:44,964 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:14:44,965 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:14:46,412 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:14:46,412 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-07 21:14:47,028 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
+2021-12-07 21:14:47,029 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok

@@ -2,8 +2,10 @@ import json
 from socket import socket
 
 from .veriables import DEFAULT_MAX_PACKAGE_LENGTH, DEFAULT_ENCODING
+from decorators import log_deco
 
 
+@log_deco
 def get_message(sender: str):
     obtained_message = sender.recv(DEFAULT_MAX_PACKAGE_LENGTH)
     if isinstance(obtained_message, bytes):
@@ -15,6 +17,7 @@ def get_message(sender: str):
     raise ValueError
 
 
+@log_deco
 def send_message(addressee: str, message: str):
     json_message = json.dumps(message)
     encoded_message = json_message.encode(DEFAULT_ENCODING)

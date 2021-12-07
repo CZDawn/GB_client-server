@@ -1,0 +1,36 @@
+2021-12-07 21:14:44,964 DEBUG     
+decorators.py FUNCTION: send_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53338), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1638900884.953774, 'user': {'account_name': 'Guest'}}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-07 21:14:44,965 DEBUG     
+decorators.py FUNCTION: get_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53338), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-07 21:14:46,411 DEBUG     
+decorators.py FUNCTION: send_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53342), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1638900886.401613, 'user': {'account_name': 'Guest'}}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-07 21:14:46,412 DEBUG     
+decorators.py FUNCTION: get_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53342), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-07 21:14:47,028 DEBUG     
+decorators.py FUNCTION: send_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53343), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1638900887.018193, 'user': {'account_name': 'Guest'}}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-07 21:14:47,029 DEBUG     
+decorators.py FUNCTION: get_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53343), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+

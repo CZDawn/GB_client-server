@@ -14,7 +14,7 @@ from common.veriables import DEFAULT_ADDRESS, DEFAULT_PORT, \
 from common.utils import get_message, send_message
 
 # Import logger config
-from log import client_log_config
+from logs import client_log_config
 
 
 LOG = logging.getLogger('client_logger')

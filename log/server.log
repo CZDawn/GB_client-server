@@ -1,5 +1,0 @@
-2021-12-06 21:02:02,162 DEBUG    server.py START SERVER: Server is listening!
-2021-12-06 21:02:05,276 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
-2021-12-06 21:04:38,667 DEBUG    server.py START SERVER: Server is listening!
-2021-12-06 21:04:40,923 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638813880.9233332, 'user': {'account_name': 'Guest'}}
-2021-12-06 21:04:40,923 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
