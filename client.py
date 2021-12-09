@@ -14,7 +14,7 @@ from common.utils import get_message, send_message
 
 
 class Client(socket.socket):
-    def __init__(self, server_address, server_port):
+    def __init__(self, server_address=None, server_port=None):
         super(Client, self).__init__(
             socket.AF_INET,
             socket.SOCK_STREAM
@@ -47,18 +47,18 @@ class Client(socket.socket):
 def main():
     # Проверряем указанные IP адрес и порт сервера
     try:
-        server_address = sys.argv[1]
-        server_port = int(sys.argv[2])
+        _host = sys.argv[1]
+        _port = int(sys.argv[2])
         if server_port < 1024 or server_port > 65535:
             raise ValueError
     except IndexError:
-        server_address = DEFAULT_ADDRESS
-        server_port = DEFAULT_PORT
+        _host = DEFAULT_ADDRESS
+        _port = DEFAULT_PORT
     except ValueError:
         print('Порт должен быть в диапазоне от 1024 до 65535!')
         sys.exit(1)
 
-    CLIENT_OBJECT = Client(server_address, server_port)
+    CLIENT_OBJECT = Client(server_address=_host, server_port=_port)
     CLIENT_OBJECT.sending_presence_message()
 
 
