@@ -80,3 +80,16 @@
 2021-12-07 21:14:46,403 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
 2021-12-07 21:14:47,018 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900887.018193, 'user': {'account_name': 'Guest'}}
 2021-12-07 21:14:47,019 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-09 17:32:17,780 DEBUG    server.py START SERVER: Server is listening!
+2021-12-09 17:32:26,229 DEBUG    decorators.py FUNCTION: send_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51510), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1639060346.216641, 'user': {'account_name': 'Guest'}}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-09 17:32:26,229 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1639060346.216641, 'user': {'account_name': 'Guest'}}
+2021-12-09 17:32:26,230 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-09 17:32:26,230 DEBUG    decorators.py FUNCTION: get_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51510), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
