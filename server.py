@@ -114,7 +114,6 @@ def main():
                     waiting_client.close()
                     clients.remove(waiting_client)
 
-
 if __name__ == '__main__':
     main()
 
