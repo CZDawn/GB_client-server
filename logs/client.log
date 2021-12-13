@@ -1,82 +1,68 @@
-2021-12-06 21:02:05,276 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-06 21:02:05,276 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-06 21:04:40,923 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-06 21:04:40,923 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 01:19:37,137 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 01:19:37,137 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 01:22:31,840 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 01:22:31,840 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 01:22:33,051 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 01:22:33,051 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 01:23:02,802 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 01:23:02,803 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 01:23:04,305 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 01:23:04,305 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 01:23:05,114 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 01:23:05,114 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 01:23:05,842 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 01:23:05,842 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:06:05,098 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:06:05,099 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:06:07,327 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:06:07,327 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:06:08,178 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:06:08,178 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:25:59,797 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:25:59,797 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:27:19,407 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:27:19,408 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:28:18,461 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:28:18,461 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:30:02,759 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:30:02,760 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:30:30,237 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:30:30,238 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:31:01,263 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:31:01,264 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:31:19,741 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:31:19,742 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:32:49,230 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:32:49,231 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:33:37,664 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:33:37,665 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:34:46,519 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:34:46,520 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:35:11,763 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:35:11,763 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:36:01,399 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:36:01,399 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:36:10,036 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:36:10,037 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:37:23,332 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:37:23,333 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 13:46:44,230 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 13:46:44,230 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:04:39,078 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:04:39,080 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:05:09,284 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:05:09,285 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:06:35,522 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:06:35,522 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:07:57,580 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:07:57,580 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:11:56,798 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:11:56,798 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:14:44,964 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:14:44,965 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:14:46,412 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:14:46,412 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-07 21:14:47,028 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-07 21:14:47,029 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
-2021-12-09 17:32:26,229 DEBUG      decorators.py FUNCTION: get_message;
-Парраметры функции - ((<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51510)>,), {})
+
+2021-12-13 17:18:02,977 DEBUG      decorators.py FUNCTION: arg_parser;
+Парраметры функции - ((), {})
 Вызвана функцией: ['main()']
 Модуль из которого вызвана функция: server.py
 
-2021-12-09 17:32:26,229 DEBUG      client.py CLIENT MESSAGE: Client send the presence message to server!
-2021-12-09 17:32:26,230 DEBUG      decorators.py FUNCTION: send_message;
-Парраметры функции - ((<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51510)>, {'response': 200}), {})
+2021-12-13 17:18:10,207 DEBUG      client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, режим работы: listen
+2021-12-13 17:18:10,208 DEBUG      client.py Сформировано presence сообщение для пользователя Guest
+2021-12-13 17:18:10,712 DEBUG      decorators.py FUNCTION: get_message;
+Парраметры функции - ((<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53155)>,), {})
 Вызвана функцией: ['main()']
 Модуль из которого вызвана функция: server.py
 
-2021-12-09 17:32:26,231 DEBUG      client.py SERVER RESPONSE: answer code - 200: Ok
+2021-12-13 17:18:10,714 DEBUG      decorators.py FUNCTION: send_message;
+Парраметры функции - ((<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53155)>, {'response': 200}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:10,714 DEBUG      client.py Разбор приветственного сообщения от сервера: {'response': 200}
+2021-12-13 17:18:10,715 DEBUG      decorators.py FUNCTION: process_client_message;
+Парраметры функции - (({'action': 'presence', 'time': 1639405090.2082229, 'user': {'account_name': 'Guest'}}, [], <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53155)>), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:10,715 DEBUG      client.py Установлено соединение с сервером. Ответ сервера: 200 : OK
+2021-12-13 17:18:18,792 DEBUG      client_send.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7777, режим работы: send
+2021-12-13 17:18:18,792 DEBUG      client_send.py Сформировано presence сообщение для пользователя Guest
+2021-12-13 17:18:19,298 DEBUG      decorators.py FUNCTION: get_message;
+Парраметры функции - ((<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53156)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:19,300 DEBUG      client_send.py Разбор приветственного сообщения от сервера: {'response': 200}
+2021-12-13 17:18:19,300 DEBUG      decorators.py FUNCTION: send_message;
+Парраметры функции - ((<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53156)>, {'response': 200}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:19,301 DEBUG      decorators.py FUNCTION: process_client_message;
+Парраметры функции - (({'action': 'presence', 'time': 1639405098.792543, 'user': {'account_name': 'Guest'}}, [], <socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53156)>), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:19,302 DEBUG      client_send.py Установлено соединение с сервером. Ответ сервера: 200 : OK
+2021-12-13 17:18:26,254 DEBUG      client_send.py Сформирован словарь сообщения: {'action': 'message', 'time': 1639405106.254293, 'account_name': 'Guest', 'mess_text': 'Привет!'}
+2021-12-13 17:18:26,341 DEBUG      decorators.py FUNCTION: get_message;
+Парраметры функции - ((<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53156)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:26,342 DEBUG      decorators.py FUNCTION: process_client_message;
+Парраметры функции - (({'action': 'message', 'time': 1639405106.254293, 'account_name': 'Guest', 'mess_text': 'Привет!'}, [('Guest', 'Привет!')], <socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53156)>), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:26,343 DEBUG      decorators.py FUNCTION: send_message;
+Парраметры функции - ((<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53155)>, {'action': 'message', 'sender': 'Guest', 'time': 1639405106.342541, 'mess_text': 'Привет!'}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:18:26,344 DEBUG      client.py Получено сообщение от пользователя Guest:
+Привет!
+2021-12-13 17:18:26,344 DEBUG      decorators.py FUNCTION: send_message;
+Парраметры функции - ((<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53156)>, {'action': 'message', 'sender': 'Guest', 'time': 1639405106.342541, 'mess_text': 'Привет!'}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: server.py
+
+2021-12-13 17:49:15,186 DEBUG      client_send.py Завершение работы по команде пользователя.

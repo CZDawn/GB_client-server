@@ -13,6 +13,7 @@ ACTION = 'action'
 TIME = 'time'
 USER = 'user'
 ACCOUNT_NAME = 'account_name'
+SENDER = 'sender'
 
 
 # OTHER PROTOCOL KEYS:
@@ -20,7 +21,10 @@ PRESENCE = 'presence'
 RESPONSE = 'response'
 ERROR = 'error'
 RESPONDEFAULT_IP_ADDRESSEE = 'respondefault_ip_addressee'
+MESSAGE = 'message'
+MESSAGE_TEXT = 'mess_text'
 
 
 #LOGGING LEVEL
 LOGGING_LEVEL = logging.DEBUG
+

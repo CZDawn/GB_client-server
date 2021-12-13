@@ -1,8 +1,16 @@
+import sys
 import json
+import logging
+import argparse
 from socket import socket
 
-from .veriables import DEFAULT_MAX_PACKAGE_LENGTH, DEFAULT_ENCODING
+from .veriables import DEFAULT_MAX_PACKAGE_LENGTH, DEFAULT_ENCODING, \
+                       DEFAULT_ADDRESS, DEFAULT_PORT
 from decorators import log_deco
+from logs import utils_log_config
+
+
+LOG = logging.getLogger('utils_logger')
 
 
 @log_deco
