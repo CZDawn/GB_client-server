@@ -1,0 +1,95 @@
+2021-12-06 21:02:02,162 DEBUG    server.py START SERVER: Server is listening!
+2021-12-06 21:02:05,276 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-06 21:04:38,667 DEBUG    server.py START SERVER: Server is listening!
+2021-12-06 21:04:40,923 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638813880.9233332, 'user': {'account_name': 'Guest'}}
+2021-12-06 21:04:40,923 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 01:19:25,215 DEBUG    server.py START SERVER: Server is listening!
+2021-12-07 01:19:37,137 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638829177.136885, 'user': {'account_name': 'Guest'}}
+2021-12-07 01:19:37,137 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 01:22:26,077 DEBUG    server.py START SERVER: Server is listening!
+2021-12-07 01:22:31,840 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638829351.840029, 'user': {'account_name': 'Guest'}}
+2021-12-07 01:22:31,840 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 01:22:33,051 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638829353.050791, 'user': {'account_name': 'Guest'}}
+2021-12-07 01:22:33,051 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 01:23:02,802 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638829382.802411, 'user': {'account_name': 'Guest'}}
+2021-12-07 01:23:02,803 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 01:23:04,305 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638829384.3047528, 'user': {'account_name': 'Guest'}}
+2021-12-07 01:23:04,305 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 01:23:05,114 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638829385.1141388, 'user': {'account_name': 'Guest'}}
+2021-12-07 01:23:05,114 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 01:23:05,842 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638829385.842159, 'user': {'account_name': 'Guest'}}
+2021-12-07 01:23:05,842 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:05:59,100 DEBUG    server.py START SERVER: Server is listening!
+2021-12-07 13:06:05,099 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638871565.0981078, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:06:05,099 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:06:07,327 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638871567.326955, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:06:07,327 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:06:08,178 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638871568.178178, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:06:08,178 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:24:50,205 DEBUG    server.py START SERVER: Server is listening!
+2021-12-07 13:25:57,270 DEBUG    server.py START SERVER: Server is listening!
+2021-12-07 13:25:59,797 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638872759.7863638, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:25:59,797 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:27:16,551 DEBUG    server.py START SERVER: Server is listening!
+2021-12-07 13:27:19,407 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638872839.398294, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:27:19,408 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:28:18,452 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638872898.451924, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:28:18,452 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:30:02,759 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873002.758881, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:30:02,760 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:30:30,228 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873030.227938, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:30:30,228 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:31:01,255 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873061.254467, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:31:01,255 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:31:19,730 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873079.729943, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:31:19,730 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:32:49,220 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873169.21991, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:32:49,220 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:33:34,686 DEBUG    server.py START SERVER: Server is listening!
+2021-12-07 13:33:37,664 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873217.651276, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:33:37,665 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:34:46,509 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873286.508699, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:34:46,509 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:35:11,753 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873311.753214, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:35:11,754 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:36:01,390 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873361.389832, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:36:01,391 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:36:10,027 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873370.026554, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:36:10,027 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:36:45,772 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873405.771469, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:36:45,772 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:36:57,363 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873417.362607, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:36:57,363 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:37:23,324 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638873443.323436, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:37:23,324 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 13:46:44,219 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638874004.2179961, 'user': {'account_name': 'Guest'}}
+2021-12-07 13:46:44,220 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:04:39,072 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900279.066083, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:04:39,073 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:05:09,274 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900309.272981, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:05:09,275 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:06:35,509 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900395.507673, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:06:35,511 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:07:57,572 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900477.5674539, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:07:57,573 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:11:56,786 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900716.785443, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:11:56,787 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:14:44,954 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900884.953774, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:14:44,955 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:14:46,402 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900886.401613, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:14:46,403 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-07 21:14:47,018 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1638900887.018193, 'user': {'account_name': 'Guest'}}
+2021-12-07 21:14:47,019 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-09 17:32:17,780 DEBUG    server.py START SERVER: Server is listening!
+2021-12-09 17:32:26,229 DEBUG    decorators.py FUNCTION: send_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51510), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1639060346.216641, 'user': {'account_name': 'Guest'}}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-09 17:32:26,229 DEBUG    server.py CLIENT MESSAGE: Получено сообщение от клиента {'action': 'presence', 'time': 1639060346.216641, 'user': {'account_name': 'Guest'}}
+2021-12-09 17:32:26,230 DEBUG    server.py SERVER RESPONSE: {'response': 200} was sended!
+2021-12-09 17:32:26,230 DEBUG    decorators.py FUNCTION: get_message;
+Парраметры функции - ((<__main__.Client fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 51510), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+

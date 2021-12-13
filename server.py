@@ -1,77 +1,118 @@
-import sys
-import json
 import socket
-
-# Import project settings
-from common.veriables import DEFAULT_ADDRESS, DEFAULT_PORT, \
-                             DEFAULT_ENCODING, DEFAULT_MAX_PACKAGE_LENGTH, \
-                             DEFAULT_MAX_CONNECTIONS, ACTION, TIME, USER, \
-                             ACCOUNT_NAME, PRESENCE, RESPONSE, ERROR, \
-                             RESPONDEFAULT_IP_ADDRESSEE
-# Import project utils
+import sys
+import argparse
+import logging
+import select
+import time
+import logs.server_log_config
+from common.veriables import DEFAULT_PORT, DEFAULT_MAX_CONNECTIONS, ACTION, \
+                             TIME, USER, ACCOUNT_NAME, SENDER, PRESENCE, \
+                             RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT
 from common.utils import get_message, send_message
+from decorators import log_deco
 
 
-class Server(socket.socket):
-    def __init__(self, listening_address, listening_port):
-        super(Server, self).__init__(
-            socket.AF_INET,
-            socket.SOCK_STREAM
-        )
-        self.listening_address = listening_address
-        self.listening_port = listening_port
-        print('Server is listening!')
+LOG = logging.getLogger('server_logger')
 
-    def messages_handler(self):
-        self.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.bind((self.listening_address, self.listening_port))
-        self.listen(DEFAULT_MAX_CONNECTIONS)
-        while True:
-            self.client, self.addr = self.accept()
-            message = get_message(self.client)
-            if ACTION in message and message[ACTION] == PRESENCE \
-                      and TIME in message and USER in message \
-                      and message[USER][ACCOUNT_NAME] == 'Guest':
-                response = {RESPONSE: 200}
-            else:
-                response = {
-                    RESPONDEFAULT_IP_ADDRESSEE: 400,
-                    ERROR: 'Bad request'
-                }
-            send_message(self.client, response)
-            print(f'{response} was sended!')
-            self.client.close()
+
+@log_deco
+def process_client_message(message, messages_list, client):
+    LOG.debug(f'Разбор сообщения от клиента : {message}')
+    # Если получено сообщение о присутствии:   
+    if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
+            and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
+        send_message(client, {RESPONSE: 200})
+        return
+    # Если получено сообщение от клиента:
+    elif ACTION in message and message[ACTION] == MESSAGE and \
+            TIME in message and MESSAGE_TEXT in message:
+        messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
+        return
+    # Иначе возвращаем Bad request
+    else:
+        send_message(client, {
+            RESPONSE: 400,
+            ERROR: 'Bad Request'
+        })
+        return
+
+
+@log_deco
+def arg_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
+    parser.add_argument('-a', default='', nargs='?')
+    namespace = parser.parse_args(sys.argv[1:])
+    listen_address = namespace.a
+    listen_port = namespace.p
+
+    if not 1023 < listen_port < 65536:
+        LOG.critical(
+            f'Запуск сервера с указанием неподходящего порта')
+        sys.exit(1)
+
+    return listen_address, listen_port
 
 
 def main():
-    # Проверяем указанный IP адрес
-    try:
-        if '-a' in sys.argv:
-            listening_address = sys.argv[sys.argv.index('-a') + 1]
+    listen_address, listen_port = arg_parser()
+
+    LOG.debug(
+        f'Запущен сервер, порт для подключений: {listen_port}, '
+        f'адрес приема подключений: {listen_address}.')
+
+    transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    transport.bind((listen_address, listen_port))
+    transport.settimeout(0.5)
+
+    clients = []
+    messages = []
+
+    transport.listen(DEFAULT_MAX_CONNECTIONS)
+    while True:
+        try:
+            client, client_address = transport.accept()
+        except OSError:
+            pass
         else:
-            listening_address = '0.0.0.0'
-    except IndexError:
-        print('После параметра "-a" необходимо указать слушаемый IP адрес!')
-        sys.exit(1)
+            LOG.debug(f'Установлено соедение с ПК {client_address}')
+            clients.append(client)
 
-    # Проверряем указанный порт
-    try:
-        if '-p' in sys.argv:
-            listening_port = int(sys.argv[sys.argv.index('-p') + 1])
-        else:
-            listening_port = DEFAULT_PORT
-        if listening_port < 1024 or listening_port > 65535:
-            raise ValueError
-    except IndexError:
-        print('После параметра "-p" необходимо указать номер порта!')
-        sys.exit(1)
-    except ValueError:
-        print('Порт должен быть в диапазоне от 1024 до 65535!')
-        sys.exit(1)
+        recv_data_lst = []
+        send_data_lst = []
+        err_lst = []
 
-    SERVER_OBJECT = Server(listening_address, listening_port)
-    SERVER_OBJECT.messages_handler()
+        try:
+            if clients:
+                recv_data_lst, send_data_lst, err_lst = select.select(clients, clients, [], 0)
+        except OSError:
+            pass
 
+        if recv_data_lst:
+            for client_with_message in recv_data_lst:
+                try:
+                    process_client_message(get_message(client_with_message),
+                                           messages, client_with_message)
+                except:
+                    LOGGER.info(f'Клиент {client_with_message.getpeername()} '
+                                f'отключился от сервера.')
+                    clients.remove(client_with_message)
+
+        if messages and send_data_lst:
+            message = {
+                ACTION: MESSAGE,
+                SENDER: messages[0][0],
+                TIME: time.time(),
+                MESSAGE_TEXT: messages[0][1]
+            }
+            del messages[0]
+            for waiting_client in send_data_lst:
+                try:
+                    send_message(waiting_client, message)
+                except:
+                    LOG.debug(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
+                    waiting_client.close()
+                    clients.remove(waiting_client)
 
 if __name__ == '__main__':
     main()

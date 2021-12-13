@@ -31,7 +31,7 @@ def message_from_server(message):
 
 @log_deco
 def create_message(sock, account_name='Guest'):
-    """Формирует текст сообщения для отправки"""
+    """Формирует сообщение или завершает работу при вводе соовтествующей комманды"""
     message = input('Введите сообщение для отправки или \'!!!\' для завершения работы: ')
     if message == '!!!':
         sock.close()
@@ -50,7 +50,7 @@ def create_message(sock, account_name='Guest'):
 
 @log_deco
 def create_presence(account_name='Guest'):
-    """Функция генерирует запрос о присутствии клиента"""
+    """Генерирует запрос о присутствии клиента"""
     message = {
         ACTION: PRESENCE,
         TIME: time.time(),
@@ -64,7 +64,7 @@ def create_presence(account_name='Guest'):
 
 @log_deco
 def process_response_ans(message):
-    """Разбирает ответ сервера на сообщение о присутствии."""
+    """Разбирает ответ сервера на сообщение о присутствии"""
     LOG.debug(f'Разбор приветственного сообщения от сервера: {message}')
     if RESPONSE in message:
         if message[RESPONSE] == 200:
@@ -79,13 +79,12 @@ def arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('addr', default=DEFAULT_ADDRESS, nargs='?')
     parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')
-    parser.add_argument('-m', '--mode', default='listen', nargs='?')
+    parser.add_argument('-m', '--mode', default='send', nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
     server_address = namespace.addr
     server_port = namespace.port
     client_mode = namespace.mode
 
-    # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         LOG.critical(
             f'Запуск клиента с неподходящим номером порта: {server_port}')
@@ -106,7 +105,6 @@ def main():
         f'Запущен клиент с парамертами: адрес сервера: {server_address}, '
         f'порт: {server_port}, режим работы: {client_mode}')
 
-    # Инициализация сокета и отправка сообщения о присутствии
     try:
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.connect((server_address, server_port))
@@ -115,7 +113,7 @@ def main():
         LOG.debug(f'Установлено соединение с сервером. Ответ сервера: {answer}')
         print(f'Установлено соединение с сервером.')
     except json.JSONDecodeError:
-        LOG.error('Не удалось декодировать полученное сообщение.')
+        LOG.error('Не удалось декодировать полученную Json строку.')
         sys.exit(1)
     except ServerError as error:
         LOG.error(f'При установке соединения сервер вернул ошибку: {error.text}')
@@ -125,7 +123,8 @@ def main():
         sys.exit(1)
     except ConnectionRefusedError:
         LOG.critical(
-            f'Не удалось подключиться к серверу {server_address}:{server_port}')
+            f'Не удалось подключиться к серверу {server_address}:{server_port}, '
+            f'конечный компьютер отверг запрос на подключение.')
         sys.exit(1)
     else:
         if client_mode == 'send':
@@ -133,12 +132,12 @@ def main():
         else:
             print('Режим работы - приём сообщений.')
         while True:
-            # режим работы - отправка сообщений:
+            # режим работы - отправка сообщений
             if client_mode == 'send':
                 try:
                     send_message(transport, create_message(transport))
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                    LOG.error(f'Соединение с сервером {server_address} потеряно.')
+                    LOG.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)
 
             # режим работы - приём сообщений:
@@ -146,7 +145,7 @@ def main():
                 try:
                     message_from_server(get_message(transport))
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                    LOG.error(f'Соединение с сервером {server_address} потеряно.')
+                    LOG.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)
 
 

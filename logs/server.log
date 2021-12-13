@@ -1,0 +1,77 @@
+
+2021-12-13 17:18:02,978 DEBUG    server.py Запущен сервер, порт для подключений: 7777, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2021-12-13 17:18:10,207 DEBUG    decorators.py FUNCTION: arg_parser;
+Парраметры функции - ((), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-13 17:18:10,208 DEBUG    server.py Установлено соедение с ПК ('127.0.0.1', 53155)
+2021-12-13 17:18:10,208 DEBUG    decorators.py FUNCTION: create_presence;
+Парраметры функции - ((), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-13 17:18:10,209 DEBUG    decorators.py FUNCTION: send_message;
+Парраметры функции - ((<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53155), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1639405090.2082229, 'user': {'account_name': 'Guest'}}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-13 17:18:10,712 DEBUG    server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1639405090.2082229, 'user': {'account_name': 'Guest'}}
+2021-12-13 17:18:10,714 DEBUG    decorators.py FUNCTION: get_message;
+Парраметры функции - ((<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53155), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-13 17:18:10,715 DEBUG    decorators.py FUNCTION: process_response_ans;
+Парраметры функции - (({'response': 200},), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-13 17:18:18,791 DEBUG    decorators.py FUNCTION: arg_parser;
+Парраметры функции - ((), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client_send.py
+
+2021-12-13 17:18:18,792 DEBUG    server.py Установлено соедение с ПК ('127.0.0.1', 53156)
+2021-12-13 17:18:18,792 DEBUG    decorators.py FUNCTION: create_presence;
+Парраметры функции - ((), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client_send.py
+
+2021-12-13 17:18:18,793 DEBUG    decorators.py FUNCTION: send_message;
+Парраметры функции - ((<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53156), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1639405098.792543, 'user': {'account_name': 'Guest'}}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client_send.py
+
+2021-12-13 17:18:19,298 DEBUG    server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1639405098.792543, 'user': {'account_name': 'Guest'}}
+2021-12-13 17:18:19,300 DEBUG    decorators.py FUNCTION: get_message;
+Парраметры функции - ((<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53156), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client_send.py
+
+2021-12-13 17:18:19,302 DEBUG    decorators.py FUNCTION: process_response_ans;
+Парраметры функции - (({'response': 200},), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client_send.py
+
+2021-12-13 17:18:26,255 DEBUG    decorators.py FUNCTION: create_message;
+Парраметры функции - ((<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53156), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client_send.py
+
+2021-12-13 17:18:26,256 DEBUG    decorators.py FUNCTION: send_message;
+Парраметры функции - ((<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53156), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'time': 1639405106.254293, 'account_name': 'Guest', 'mess_text': 'Привет!'}), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client_send.py
+
+2021-12-13 17:18:26,341 DEBUG    server.py Разбор сообщения от клиента : {'action': 'message', 'time': 1639405106.254293, 'account_name': 'Guest', 'mess_text': 'Привет!'}
+2021-12-13 17:18:26,343 DEBUG    decorators.py FUNCTION: get_message;
+Парраметры функции - ((<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53155), raddr=('127.0.0.1', 7777)>,), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
+2021-12-13 17:18:26,344 DEBUG    decorators.py FUNCTION: message_from_server;
+Парраметры функции - (({'action': 'message', 'sender': 'Guest', 'time': 1639405106.342541, 'mess_text': 'Привет!'},), {})
+Вызвана функцией: ['main()']
+Модуль из которого вызвана функция: client.py
+
