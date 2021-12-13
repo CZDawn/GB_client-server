@@ -11,24 +11,24 @@ from common.veriables import DEFAULT_PORT, DEFAULT_MAX_CONNECTIONS, ACTION, \
 from common.utils import get_message, send_message
 from decorators import log_deco
 
-# Инициализация логирования сервера.
+
 LOG = logging.getLogger('server_logger')
 
 
 @log_deco
 def process_client_message(message, messages_list, client):
     LOG.debug(f'Разбор сообщения от клиента : {message}')
-    # Если это сообщение о присутствии, принимаем и отвечаем, если успех
+    # Если получено сообщение о присутствии:   
     if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
             and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
         send_message(client, {RESPONSE: 200})
         return
-    # Если это сообщение, то добавляем его в очередь сообщений. Ответ не требуется.
+    # Если получено сообщение от клиента:
     elif ACTION in message and message[ACTION] == MESSAGE and \
             TIME in message and MESSAGE_TEXT in message:
         messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
         return
-    # Иначе отдаём Bad request
+    # Иначе возвращаем Bad request
     else:
         send_message(client, {
             RESPONSE: 400,
@@ -46,39 +46,30 @@ def arg_parser():
     listen_address = namespace.a
     listen_port = namespace.p
 
-    # проверка получения корретного номера порта для работы сервера.
     if not 1023 < listen_port < 65536:
         LOG.critical(
-            f'Попытка запуска сервера с указанием неподходящего порта '
-            f'{listen_port}. Допустимы адреса с 1024 до 65535.')
+            f'Запуск сервера с указанием неподходящего порта')
         sys.exit(1)
 
     return listen_address, listen_port
 
 
 def main():
-    """Загрузка параметров командной строки, если нет параметров, то задаём значения по умоланию"""
     listen_address, listen_port = arg_parser()
 
     LOG.debug(
         f'Запущен сервер, порт для подключений: {listen_port}, '
-        f'адрес с которого принимаются подключения: {listen_address}. '
-        f'Если адрес не указан, принимаются соединения с любых адресов.')
+        f'адрес приема подключений: {listen_address}.')
 
-    # Готовим сокет
     transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     transport.bind((listen_address, listen_port))
     transport.settimeout(0.5)
 
-    # список клиентов , очередь сообщений
     clients = []
     messages = []
 
-    # Слушаем порт
     transport.listen(DEFAULT_MAX_CONNECTIONS)
-    # Основной цикл программы сервера
     while True:
-        # Ждём подключения, если таймаут вышел, ловим исключение.
         try:
             client, client_address = transport.accept()
         except OSError:
@@ -90,15 +81,13 @@ def main():
         recv_data_lst = []
         send_data_lst = []
         err_lst = []
-        # Проверяем на наличие ждущих клиентов
+
         try:
             if clients:
                 recv_data_lst, send_data_lst, err_lst = select.select(clients, clients, [], 0)
         except OSError:
             pass
 
-        # принимаем сообщения и если там есть сообщения,
-        # кладём в словарь, если ошибка, исключаем клиента.
         if recv_data_lst:
             for client_with_message in recv_data_lst:
                 try:
@@ -109,7 +98,6 @@ def main():
                                 f'отключился от сервера.')
                     clients.remove(client_with_message)
 
-        # Если есть сообщения для отправки и ожидающие клиенты, отправляем им сообщение.
         if messages and send_data_lst:
             message = {
                 ACTION: MESSAGE,

@@ -1,5 +1,3 @@
-"""Программа-клиент"""
-
 import sys
 import json
 import socket
@@ -14,13 +12,13 @@ from common.utils import get_message, send_message
 from errors import ReqFieldMissingError, ServerError
 from decorators import log_deco
 
-# Инициализация клиентского логера
+
 LOG = logging.getLogger('client_logger')
 
 
 @log_deco
 def message_from_server(message):
-    """Функция - обработчик сообщений других пользователей, поступающих с сервера"""
+    """Обработывает сообщения других пользователей, поступающих с сервера"""
     if ACTION in message and message[ACTION] == MESSAGE and \
             SENDER in message and MESSAGE_TEXT in message:
         print(f'Получено сообщение от пользователя '
@@ -33,9 +31,7 @@ def message_from_server(message):
 
 @log_deco
 def create_message(sock, account_name='Guest'):
-    """Функция запрашивает текст сообщения и возвращает его.
-    Так же завершает работу при вводе подобной комманды
-    """
+    """Формирует текст сообщения для отправки"""
     message = input('Введите сообщение для отправки или \'!!!\' для завершения работы: ')
     if message == '!!!':
         sock.close()
@@ -68,10 +64,7 @@ def create_presence(account_name='Guest'):
 
 @log_deco
 def process_response_ans(message):
-    """
-    Функция разбирает ответ сервера на сообщение о присутствии,
-    возращает 200 если все ОК или генерирует исключение при ошибке
-    """
+    """Разбирает ответ сервера на сообщение о присутствии."""
     LOG.debug(f'Разбор приветственного сообщения от сервера: {message}')
     if RESPONSE in message:
         if message[RESPONSE] == 200:
@@ -95,28 +88,25 @@ def arg_parser():
     # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         LOG.critical(
-            f'Попытка запуска клиента с неподходящим номером порта: {server_port}. '
-            f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
+            f'Запуск клиента с неподходящим номером порта: {server_port}')
         sys.exit(1)
 
     # Проверим допустим ли выбранный режим работы клиента
     if client_mode not in ('listen', 'send'):
-        LOG.critical(f'Указан недопустимый режим работы {client_mode}, '
-                        f'допустимые режимы: listen , send')
+        LOG.critical(f'Указан недопустимый режим работы {client_mode}')
         sys.exit(1)
 
     return server_address, server_port, client_mode
 
 
 def main():
-    """Загружаем параметы коммандной строки"""
     server_address, server_port, client_mode = arg_parser()
 
     LOG.debug(
         f'Запущен клиент с парамертами: адрес сервера: {server_address}, '
         f'порт: {server_port}, режим работы: {client_mode}')
 
-    # Инициализация сокета и сообщение серверу о нашем появлении
+    # Инициализация сокета и отправка сообщения о присутствии
     try:
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.connect((server_address, server_port))
@@ -125,7 +115,7 @@ def main():
         LOG.debug(f'Установлено соединение с сервером. Ответ сервера: {answer}')
         print(f'Установлено соединение с сервером.')
     except json.JSONDecodeError:
-        LOG.error('Не удалось декодировать полученную Json строку.')
+        LOG.error('Не удалось декодировать полученное сообщение.')
         sys.exit(1)
     except ServerError as error:
         LOG.error(f'При установке соединения сервер вернул ошибку: {error.text}')
@@ -135,32 +125,28 @@ def main():
         sys.exit(1)
     except ConnectionRefusedError:
         LOG.critical(
-            f'Не удалось подключиться к серверу {server_address}:{server_port}, '
-            f'конечный компьютер отверг запрос на подключение.')
+            f'Не удалось подключиться к серверу {server_address}:{server_port}')
         sys.exit(1)
     else:
-        # Если соединение с сервером установлено корректно,
-        # начинаем обмен с ним, согласно требуемому режиму.
-        # основной цикл прогрммы:
         if client_mode == 'send':
             print('Режим работы - отправка сообщений.')
         else:
             print('Режим работы - приём сообщений.')
         while True:
-            # режим работы - отправка сообщений
+            # режим работы - отправка сообщений:
             if client_mode == 'send':
                 try:
                     send_message(transport, create_message(transport))
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                    LOG.error(f'Соединение с сервером {server_address} было потеряно.')
+                    LOG.error(f'Соединение с сервером {server_address} потеряно.')
                     sys.exit(1)
 
-            # Режим работы приём:
+            # режим работы - приём сообщений:
             if client_mode == 'listen':
                 try:
                     message_from_server(get_message(transport))
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                    LOG.error(f'Соединение с сервером {server_address} было потеряно.')
+                    LOG.error(f'Соединение с сервером {server_address} потеряно.')
                     sys.exit(1)
 
 
