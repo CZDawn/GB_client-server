@@ -12,7 +12,7 @@ else:
     LOG = logging.getLogger('utils_logger')
 
 
-def log_deco(func):
+def log_deco(func: object) -> object:
     def decorated(*args, **kwargs):
         result = func(*args, **kwargs)
         frame = inspect.currentframe()

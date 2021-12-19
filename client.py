@@ -32,8 +32,8 @@ def message_from_server(message):
 @log_deco
 def create_message(sock, account_name='Guest'):
     """Формирует текст сообщения для отправки"""
-    message = input('Введите сообщение для отправки или \'!!!\' для завершения работы: ')
-    if message == '!!!':
+    message = input('Введите сообщение для отправки или \'x\' для завершения работы: ')
+    if message == 'x':
         sock.close()
         LOG.debug('Завершение работы по команде пользователя.')
         print('Спасибо за использование нашего сервиса!')
@@ -85,13 +85,11 @@ def arg_parser():
     server_port = namespace.port
     client_mode = namespace.mode
 
-    # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         LOG.critical(
             f'Запуск клиента с неподходящим номером порта: {server_port}')
         sys.exit(1)
 
-    # Проверим допустим ли выбранный режим работы клиента
     if client_mode not in ('listen', 'send'):
         LOG.critical(f'Указан недопустимый режим работы {client_mode}')
         sys.exit(1)
@@ -106,7 +104,6 @@ def main():
         f'Запущен клиент с парамертами: адрес сервера: {server_address}, '
         f'порт: {server_port}, режим работы: {client_mode}')
 
-    # Инициализация сокета и отправка сообщения о присутствии
     try:
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.connect((server_address, server_port))

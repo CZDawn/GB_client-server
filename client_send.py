@@ -32,8 +32,8 @@ def message_from_server(message):
 @log_deco
 def create_message(sock, account_name='Guest'):
     """Формирует сообщение или завершает работу при вводе соовтествующей комманды"""
-    message = input('Введите сообщение для отправки или \'!!!\' для завершения работы: ')
-    if message == '!!!':
+    message = input('Введите сообщение для отправки или \'x\' для завершения работы: ')
+    if message == 'x':
         sock.close()
         LOG.debug('Завершение работы по команде пользователя.')
         print('Спасибо за использование нашего сервиса!')
@@ -90,7 +90,6 @@ def arg_parser():
             f'Запуск клиента с неподходящим номером порта: {server_port}')
         sys.exit(1)
 
-    # Проверим допустим ли выбранный режим работы клиента
     if client_mode not in ('listen', 'send'):
         LOG.critical(f'Указан недопустимый режим работы {client_mode}')
         sys.exit(1)
@@ -124,7 +123,7 @@ def main():
     except ConnectionRefusedError:
         LOG.critical(
             f'Не удалось подключиться к серверу {server_address}:{server_port}, '
-            f'конечный компьютер отверг запрос на подключение.')
+        )
         sys.exit(1)
     else:
         if client_mode == 'send':
@@ -132,7 +131,6 @@ def main():
         else:
             print('Режим работы - приём сообщений.')
         while True:
-            # режим работы - отправка сообщений
             if client_mode == 'send':
                 try:
                     send_message(transport, create_message(transport))
@@ -140,7 +138,6 @@ def main():
                     LOG.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)
 
-            # режим работы - приём сообщений:
             if client_mode == 'listen':
                 try:
                     message_from_server(get_message(transport))

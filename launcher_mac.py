@@ -7,29 +7,40 @@ clients=[]
 server=''
 pathOfFile=path.dirname(__file__)
 pathServer=path.join(pathOfFile, "server.py")
-pathClient=path.join(pathOfFile, "client.py")
-pathToScriptServer = path.join(pathOfFile, "start","startServer")
-pathToScriptClients = path.join(pathOfFile, "start","startClient")
-print (pathClient)
+pathReadClient=path.join(pathOfFile, "client.py")
+pathSendClient=path.join(pathOfFile, "client_send.py")
 
 while True:
-    choice = input("q - запуск сервера, w - остановка сервера, e - запуск 4 клиентов, r - остановка клиентов, t - остановить все, y - остановить все и выйти")
+    choice = input(
+        "s - запуск сервера, w - остановка сервера, c - запуск 4 клиентов, \
+        r - остановка клиентов, t - остановить все, y - остановить все и выйти \n>>>"
+    )
 
-    if choice=="q":
+    if choice=="s":
         print ("Запустили сервер")
-        server = Popen(f"open -n -a Terminal.app '{pathToScriptServer}'", shell=True)
+        server = Popen(
+            f'osascript -e \'tell application "Terminal" to do'
+            f' script "python3 {pathServer}"\'',
+            shell=True
+        )
 
     elif choice == "w":
         print ("Убили сервер")
         server.kill()
-    elif choice =="e":
+    elif choice =="c":
             print("Запустили клиенты")
             for i in range(1,3):
-                clients.append(Popen(f"open -n -a Terminal.app '{pathToScriptClients}{i}'", shell=True))
-                #Задержка для того, что бы отправляющий процесс успел зарегистрироваться на сервере, и потом в словаре имен клиентов
-                #остался только слушающий клиент
+                clients.append(Popen(
+                    f'osascript -e \'tell application "Terminal" to do'
+                    f' script "python3 {pathReadClient}"\'',
+                    shell=True
+                ))
                 time.sleep(0.5)
-                clients.append(Popen(f"open -n -a Terminal.app '{pathToScriptClients}{i}r'", shell=True))
+                clients.append(Popen(
+                    f'osascript -e \'tell application "Terminal" to do'
+                    f' script "python3 {pathSendClient}"\'',
+                    shell=True
+                ))
 
     elif choice == "r":
         for i in range(len(clients)):
