@@ -26,7 +26,6 @@ while True:
             f'script "python3 {PATH_TO_SCRIPT_SERVER}"\'',
             shell=True
         )
-        print(f'Это SERVER: {SERVER}')
     elif CHOICE == '2':
         # pass
         print("Убили сервер")
@@ -39,12 +38,7 @@ while True:
                     f'osascript -e \'tell application "Terminal" to do '
                     f'script "python3 {PATH_TO_SCRIPT_CLIENTS}"\'',
                     shell=True))
-            CLIENTS.append(
-                Popen(
-                    f'osascript -e \'tell application "Terminal" to do'
-                    f' script "python3 {PATH_TO_SCRIPT_CLIENTS} -m send"\'',
-                    shell=True))
-            # time.sleep(0.5)
+            time.sleep(0.5)
     elif CHOICE == '4':
         for i in range(len(CLIENTS)):
             print(CLIENTS[i])

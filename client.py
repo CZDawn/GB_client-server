@@ -125,16 +125,15 @@ def args_parser():
     parser.add_argument('address', default=DEFAULT_IP_ADDRESS, nargs='?')
     parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')
     parser.add_argument('-n', '--name', default=None, nargs='?')
-    parser.add_argument('-m', '--mode', default='listen', nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
     if not 1023 < namespace.port < 65536:
         LOG.critical(f'Port "{namespace.port}" was entered incorrect. ')
         sys.exit(1)
-    return namespace.address, namespace.port, namespace.name, namespace.mode
+    return namespace.address, namespace.port, namespace.name
 
 
 def main():
-    server_ip, server_port, client_name, client_mode = args_parser()
+    server_ip, server_port, client_name = args_parser()
     if not client_name:
         client_name = input('Введите имя пользователя: ')
     LOG.info(
@@ -165,20 +164,17 @@ def main():
         LOG.error(f'Failed decoding of JSON message.')
         sys.exit(1)
     else:
-        if client_mode == 'listen':
-            receiver = Thread(target=server_message_handler, args=(client_sock, client_name))
-            receiver.daemon = True
-            receiver.start()
-        elif client_mode == 'send':
-            sender = Thread(target=user_menu, args=(client_sock, client_name))
-            sender.daemon = True
-            sender.start()
+        receiver = Thread(target=server_message_handler, args=(client_sock, client_name))
+        receiver.daemon = True
+        receiver.start()
+
+        sender = Thread(target=user_menu, args=(client_sock, client_name))
+        sender.daemon = True
+        sender.start()
 
         while True:
             sleep(1)
-            if client_mode == 'listen' and receiver.is_alive():
-                continue
-            if client_mode == 'send' and sender.is_alive():
+            if receiver.is_alive() and sender.is_alive():
                 continue
             break
 

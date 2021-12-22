@@ -141,7 +141,6 @@ def main():
                         f'Client {client_with_message.getpeername()} disconnected from the server.'
                     )
                     clients.remove(client_with_message)
-        print(messages)
         for message in messages:
             try:
                 message_handler(message, names, clients_addressees)
