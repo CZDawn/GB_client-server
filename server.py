@@ -1,118 +1,158 @@
-import socket
 import sys
-import argparse
-import logging
-import select
-import time
-import logs.server_log_config
-from common.veriables import DEFAULT_PORT, DEFAULT_MAX_CONNECTIONS, ACTION, \
-                             TIME, USER, ACCOUNT_NAME, SENDER, PRESENCE, \
-                             RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT
+from select import select
+from logging import getLogger
+from argparse import ArgumentParser
+from socket import socket, AF_INET, SOCK_STREAM
+
+from logs import server_logger_config
+from decorators import log_decorator
+from common.variables import DEFAULT_IP_ADDRESS, DEFAULT_PORT, \
+                             DEFAULT_MAX_QUEUE_LENGTH, ACTION, PRESENCE, TIME, \
+                             ERROR, USER, MESSAGE, MESSAGE_TEXT, SENDER, \
+                             RESPONSE_200, RESPONSE_300, RESPONSE_400, \
+                             EXIT, RECIPIENT
+
 from common.utils import get_message, send_message
-from decorators import log_deco
 
 
-LOG = logging.getLogger('server_logger')
+LOG = getLogger('server_logger')
 
 
-@log_deco
-def process_client_message(message, messages_list, client):
-    LOG.debug(f'Разбор сообщения от клиента : {message}')
-    # Если получено сообщение о присутствии:   
-    if ACTION in message and message[ACTION] == PRESENCE and TIME in message \
-            and USER in message and message[USER][ACCOUNT_NAME] == 'Guest':
-        send_message(client, {RESPONSE: 200})
+@log_decorator
+def processing_message(data, client, message_list, clients, names):
+    LOG.debug(f'Handle client message - {data}')
+
+    if ACTION in data and data[ACTION] == PRESENCE and TIME in data \
+        and USER in data:
+        if data[USER] not in names.keys():
+            names[data[USER]] = client
+            send_message(client, RESPONSE_200)
+            LOG.info(
+                f'Client {client.getpeername()} connected. '
+                f'Response sended {RESPONSE_200}'
+            )
+        else:
+            response = RESPONSE_400
+            response[ERROR] = 'Username is not available.'
+            send_message(client, response)
+            LOG.error(
+                f'Attempt connection user {client.getpeername()} with '
+                f'not available username. Sended response {RESPONSE_400}'
+            )
+            clients.remove(client)
+            client.close()
         return
-    # Если получено сообщение от клиента:
-    elif ACTION in message and message[ACTION] == MESSAGE and \
-            TIME in message and MESSAGE_TEXT in message:
-        messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
+    elif ACTION in data and data[ACTION] == MESSAGE and TIME in data and SENDER in data and RECIPIENT in data and MESSAGE_TEXT in data:
+        message_lst.append(data)
         return
-    # Иначе возвращаем Bad request
+    elif ACTION in data and data[ACTION] == EXIT and TIME in data and USER in data:
+        LOG.info(
+            f'Client {client.getpeername()} disconnected from the server.'
+        )
+        clients.remove(names[data[USER]])
+        names[data[USER]].close()
+        del names[data[USER]]
+        return
     else:
-        send_message(client, {
-            RESPONSE: 400,
-            ERROR: 'Bad Request'
-        })
+        response = RESPONSE_400
+        response[ERROR] = 'Bad request.'
+        LOG.debug(
+            f'Have got incorrect request from the client {client.getpeername()}, '
+            f'sended response {response}'
+        )
+        send_message(client, response)
         return
 
 
-@log_deco
-def arg_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
-    parser.add_argument('-a', default='', nargs='?')
+@log_decorator
+def message_handler(message, names, listen_sock):
+
+    if message[RECIPIENT] in names and names[message[RECIPIENT]] in listen_sock:
+        send_message(names[message[RECIPIENT]], message)
+        LOG.info(
+            f'Message from the client {message[SENDER]} '
+            f'sended to adressee {message[RECIPIENT]}.'
+        )
+    elif message[RECIPIENT] in names and names[message[RECIPIENT]] not in listen_sock:
+        raise ConnectionError
+    else:
+        no_user_dict = RESPONSE_300
+        no_user_dict[ERROR] = f'User with name {message[RECIPIENT]} ' \
+                              f'not registered on the server.'
+        send_message(names[message[SENDER]], no_user_dict)
+        LOG.error(f'{no_user_dict[ERROR]} Sending message is not available.')
+        LOG.debug(f'User {message[SENDER]} get the response {no_user_dict}')
+
+
+@log_decorator
+def args_parser():
+    parser = ArgumentParser()
+    parser.add_argument('-p', default=DEFAULT_PORT, type=int)
+    parser.add_argument('-a', default=DEFAULT_IP_ADDRESS)
     namespace = parser.parse_args(sys.argv[1:])
-    listen_address = namespace.a
-    listen_port = namespace.p
-
-    if not 1023 < listen_port < 65536:
-        LOG.critical(
-            f'Запуск сервера с указанием неподходящего порта')
+    if not 1023 < namespace.p < 65536:
+        LOGG.critical(
+            f'Incorrect enttered port "{namespace.p}".'
+        )
         sys.exit(1)
-
-    return listen_address, listen_port
+    return namespace.a, namespace.p
 
 
 def main():
-    listen_address, listen_port = arg_parser()
+    listen_address, listen_port = args_parser()
+    LOG.info(
+        f'Server ran with parameters - {listen_address}:{listen_port}'
+    )
 
-    LOG.debug(
-        f'Запущен сервер, порт для подключений: {listen_port}, '
-        f'адрес приема подключений: {listen_address}.')
-
-    transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    transport.bind((listen_address, listen_port))
-    transport.settimeout(0.5)
+    server_sock = socket(AF_INET, SOCK_STREAM)
+    server_sock.bind((listen_address, listen_port))
+    server_sock.settimeout(0.5)
+    server_sock.listen(DEFAULT_MAX_QUEUE_LENGTH)
 
     clients = []
     messages = []
+    names = dict()
 
-    transport.listen(DEFAULT_MAX_CONNECTIONS)
     while True:
         try:
-            client, client_address = transport.accept()
+            client_sock, client_address = server_sock.accept()
         except OSError:
             pass
         else:
-            LOG.debug(f'Установлено соедение с ПК {client_address}')
-            clients.append(client)
+            LOG.info(f'Connection with client {client_address} established.')
+            clients.append(client_sock)
 
-        recv_data_lst = []
-        send_data_lst = []
-        err_lst = []
+        clients_senders = []
+        clients_addressees = []
+        errors_list = []
 
         try:
             if clients:
-                recv_data_lst, send_data_lst, err_lst = select.select(clients, clients, [], 0)
+                clients_senders, clients_addressees, errors_list = select(clients, clients, [], 0)
         except OSError:
-            pass
+            print('Exception OSError - line 116')
 
-        if recv_data_lst:
-            for client_with_message in recv_data_lst:
+        if clients_senders:
+            for client_with_message in clients_senders:
                 try:
-                    process_client_message(get_message(client_with_message),
-                                           messages, client_with_message)
-                except:
-                    LOGGER.info(f'Клиент {client_with_message.getpeername()} '
-                                f'отключился от сервера.')
+                    processing_message(get_message(client_with_message), client_with_message, messages, clients, names)
+                except Exception:
+                    LOG.info(
+                        f'Client {client_with_message.getpeername()} disconnected from the server.'
+                    )
                     clients.remove(client_with_message)
+        print(messages)
+        for message in messages:
+            try:
+                message_handler(message, names, clients_addressees)
+            except Exception:
+                LOG.info(f'Client {message[RECIPIENT]} disconnected from the server.')
+                no_user_dict = RESPONSE_300
+                no_user_dict[ERROR] = f'Client {message[RECIPIENT]} disconnected from the server.'
+                send_message(names[message[SENDER]], no_user_dict)
+                del names[message[RECIPIENT]]
+        messages.clear()
 
-        if messages and send_data_lst:
-            message = {
-                ACTION: MESSAGE,
-                SENDER: messages[0][0],
-                TIME: time.time(),
-                MESSAGE_TEXT: messages[0][1]
-            }
-            del messages[0]
-            for waiting_client in send_data_lst:
-                try:
-                    send_message(waiting_client, message)
-                except:
-                    LOG.debug(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-                    waiting_client.close()
-                    clients.remove(waiting_client)
 
 if __name__ == '__main__':
     main()

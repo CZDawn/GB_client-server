@@ -1,26 +1,26 @@
 import sys
 import inspect
-import logging
-# Import logging config
-from logs import utils_log_config, server_log_config, client_log_config
+from functools import wraps
+from logging import getLogger
 
-if sys.argv[0].find('client'):
-    LOG = logging.getLogger('client_logger')
-elif sys.argv[0].find('server'):
-    LOG = logging.getLogger('server_logger')
+from logs import client_logger_config, server_logger_config
+
+
+if sys.argv[0].find('server.py') == -1:
+    LOG = getLogger('client_logger')
 else:
-    LOG = logging.getLogger('utils_logger')
+    LOG = getLogger('server_logger')
 
 
-def log_deco(func: object) -> object:
-    def decorated(*args, **kwargs):
-        result = func(*args, **kwargs)
-        frame = inspect.currentframe()
-        LOG.debug(
-            f'FUNCTION: {func.__name__};\n'
-            f'Парраметры функции - ({args}, {kwargs})\n'
-            f'Вызвана функцией: {inspect.getouterframes(frame)[-1][-2][0].split()}\n'
-            f'Модуль из которого вызвана функция: {inspect.getouterframes(frame)[-1][1].split("/")[-1]}\n')
+def log_decorator(_function):
+    @wraps(_function)
+    def decorator(*args, **kwargs):
+        result = _function(*args, **kwargs)
+        stack = inspect.stack()[1][3]
+        LOG.info(f'Called function "{_function.__name__}" '
+                 f'from function "{stack}"')
+        LOG.info(f'Function "{_function.__name__}" from module '
+                 f'"{_function.__module__}" with arguments ({args}, {kwargs})')
         return result
-    return decorated
+    return decorator
 

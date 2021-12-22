@@ -1,33 +1,29 @@
-import sys
 import json
-import logging
-import argparse
-from socket import socket
 
-from .veriables import DEFAULT_MAX_PACKAGE_LENGTH, DEFAULT_ENCODING, \
-                       DEFAULT_ADDRESS, DEFAULT_PORT
-from decorators import log_deco
-from logs import utils_log_config
+from common.variables import DEFAULT_ENCODING, DEFAULT_MAX_PACKAGES_LENGTH
+from decorators import log_decorator
 
 
-LOG = logging.getLogger('utils_logger')
+@log_decorator
+def get_message(sender) -> dict:
+    ''' Processes the received message.
+    Returns the message in dictionary format.
+     '''
 
+    obtained_message = sender.recv(DEFAULT_MAX_PACKAGES_LENGTH)
 
-@log_deco
-def get_message(sender: str):
-    obtained_message = sender.recv(DEFAULT_MAX_PACKAGE_LENGTH)
     if isinstance(obtained_message, bytes):
-        json_response = obtained_message.decode(DEFAULT_ENCODING)
-        response = json.loads(json_response)
-        if isinstance(response, dict):
-            return response
+        decoded_message = obtained_message.decode(DEFAULT_ENCODING)
+        dict_format_message = json.loads(decoded_message)
+        if isinstance(dict_format_message, dict):
+            return dict_format_message
         raise ValueError
     raise ValueError
 
 
-@log_deco
-def send_message(addressee: str, message: str):
-    json_message = json.dumps(message)
-    encoded_message = json_message.encode(DEFAULT_ENCODING)
+@log_decorator
+def send_message(addressee, message) -> None:
+    json_format_message_to_send = json.dumps(message)
+    encoded_message = json_format_message_to_send.encode(DEFAULT_ENCODING)
     addressee.send(encoded_message)
 
