@@ -60,7 +60,7 @@ def create_message(sock, username):
     LOG.debug(f'Created dict-message: {dict_message}')
     try:
         send_message(sock, dict_message)
-        LOG.info(f'Message sended to user {recipient}')
+        LOG.info(f'Message sended to user {addressee}')
     except:
         LOG.critical(f'Lost connection with server')
         sys.exit(1)

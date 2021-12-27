@@ -2,7 +2,7 @@ import sys
 from select import select
 from logging import getLogger
 from argparse import ArgumentParser
-from socket import socket, AF_INET, SOCK_STREAM
+from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 
 from logs import server_logger_config
 from decorators import log_decorator
@@ -43,7 +43,7 @@ def processing_message(data, client, message_list, clients, names):
             client.close()
         return
     elif ACTION in data and data[ACTION] == MESSAGE and TIME in data and SENDER in data and RECIPIENT in data and MESSAGE_TEXT in data:
-        message_lst.append(data)
+        message_list.append(data)
         return
     elif ACTION in data and data[ACTION] == EXIT and TIME in data and USER in data:
         LOG.info(
@@ -105,6 +105,7 @@ def main():
     )
 
     server_sock = socket(AF_INET, SOCK_STREAM)
+    server_sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     server_sock.bind((listen_address, listen_port))
     server_sock.settimeout(0.5)
     server_sock.listen(DEFAULT_MAX_QUEUE_LENGTH)
@@ -149,6 +150,7 @@ def main():
                 no_user_dict = RESPONSE_300
                 no_user_dict[ERROR] = f'Client {message[RECIPIENT]} disconnected from the server.'
                 send_message(names[message[SENDER]], no_user_dict)
+                clients.remove(names[message[RESIPIENT]])
                 del names[message[RECIPIENT]]
         messages.clear()
 

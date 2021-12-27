@@ -1,4 +1,7 @@
 import json
+import sys
+
+sys.path.append('../')
 
 from common.variables import DEFAULT_ENCODING, DEFAULT_MAX_PACKAGES_LENGTH
 from decorators import log_decorator
